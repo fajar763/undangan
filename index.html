@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>HUT RI ke-81 - Safira Green Residence</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --merah: #E53935;
+            --merah-dark: #B71C1C;
+            --merah-light: #FF5252;
+            --putih: #FFFFFF;
+            --emas: #FFD700;
+            --emas-dark: #FFA000;
+            --bg: #FFF8F8;
+            --card-bg: #FFFFFF;
+            --text: #1a1a1a;
+            --text-light: #555;
+            --text-muted: #999;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        .app-container {
+            max-width: 430px;
+            margin: 0 auto;
+            min-height: 100vh;
+            background: var(--card-bg);
+            position: relative;
+            box-shadow: 0 0 60px rgba(0,0,0,0.08);
+        }
+        /* Header */
+        .site-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 20px;
+            background: var(--card-bg);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 900;
+        }
+        .site-header .logo {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #2E7D32, #4CAF50);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+        .site-header .brand h1 {
+            font-size: 14px;
+            font-weight: 800;
+            color: #2E7D32;
+            line-height: 1.2;
+        }
+        .site-header .brand p {
+            font-size: 10px;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+        }
+        /* Ribbon */
+        .ribbon {
+            height: 6px;
+            background: linear-gradient(90deg, var(--merah) 50%, var(--putih) 50%);
+            background-size: 40px 6px;
+        }
+        /* Hero */
+        .hero {
+            position: relative;
+            min-height: 440px;
+            background: linear-gradient(160deg, var(--merah-dark) 0%, var(--merah) 60%, var(--merah-light) 100%);
+            border-radius: 0 0 44px 44px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 50px 24px 40px;
+            text-align: center;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 20% 80%, rgba(255,215,0,0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255,255,255,0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        .hero-flag {
+            display: flex;
+            flex-direction: column;
+            width: 60px; height: 40px;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            margin-bottom: 20px;
+        }
+        .hero-flag .red { flex: 1; background: var(--merah); }
+        .hero-flag .white { flex: 1; background: var(--putih); }
+        .hero-label {
+            font-size: 11px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.8);
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 52px;
+            font-weight: 900;
+            color: var(--emas);
+            line-height: 1;
+            margin-bottom: 4px;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+        .hero h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--putih);
+            margin-bottom: 6px;
+        }
+        .hero .tagline {
+            font-size: 13px;
+            color: rgba(255,255,255,0.85);
+            line-height: 1.6;
+            max-width: 300px;
+            margin-top: 12px;
+        }
+        .hero .year-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255,215,0,0.2);
+            border: 1px solid rgba(255,215,0,0.4);
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--emas);
+            margin-top: 18px;
+        }
+        .hero-garuda {
+            position: absolute;
+            bottom: -10px; right: -10px;
+            font-size: 140px;
+            opacity: 0.07;
+        }
+        /* Countdown */
+        .countdown-section {
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            padding: 0 20px;
+            margin-top: -30px;
+            position: relative;
+            z-index: 10;
+        }
+        .countdown-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 16px 12px;
+            text-align: center;
+            box-shadow: 0 4px 24px rgba(229,57,53,0.1);
+            border: 1px solid rgba(229,57,53,0.08);
+            flex: 1;
+            max-width: 90px;
+        }
+        .countdown-card .cd-value {
+            font-size: 26px;
+            font-weight: 900;
+            color: var(--merah);
+        }
+        .countdown-card .cd-label {
+            font-size: 9px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 2px;
+        }
+        /* Section */
+        .section { padding: 28px 20px; }
+        .section-title {
+            font-size: 17px;
+            font-weight: 800;
+            color: var(--text);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .section-title i { color: var(--merah); font-size: 16px; }
+        /* Event Card */
+        .event-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 20px 18px;
+            margin-bottom: 14px;
+            border-left: 4px solid var(--merah);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+        .event-card .event-date {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #FFEBEE;
+            color: var(--merah);
+            font-size: 11px;
+            font-weight: 700;
+            padding: 5px 12px;
+            border-radius: 20px;
+            margin-bottom: 10px;
+        }
+        .event-card h3 {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 6px;
+        }
+        .event-card p {
+            font-size: 13px;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+        .event-card .event-time {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 10px;
+            font-size: 12px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+        .event-card .event-time i { color: var(--merah); }
+        /* Lomba List */
+        .lomba-list {
+            list-style: none;
+        }
+        .lomba-list li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 16px;
+            background: linear-gradient(135deg, #FFF8F8, #FFEBEE);
+            border-radius: 14px;
+            margin-bottom: 10px;
+            border: 1px solid rgba(229,57,53,0.06);
+        }
+        .lomba-list li .lomba-num {
+            width: 32px; height: 32px;
+            background: var(--merah);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 800;
+            flex-shrink: 0;
+        }
+        .lomba-list li span {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text);
+        }
+        /* Biaya */
+        .biaya-card {
+            background: linear-gradient(135deg, #FFFDE7, #FFF9C4);
+            border-radius: 20px;
+            padding: 22px 20px;
+            margin-bottom: 14px;
+            border: 1px solid rgba(255,160,0,0.2);
+        }
+        .biaya-card h3 {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--emas-dark);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .biaya-card .biaya-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px dashed rgba(0,0,0,0.08);
+            font-size: 13px;
+        }
+        .biaya-card .biaya-item:last-child { border-bottom: none; }
+        .biaya-card .biaya-item .label { color: var(--text-light); }
+        .biaya-card .biaya-item .value { font-weight: 700; color: var(--text); }
+        /* Rekening */
+        .rek-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 18px;
+            margin-bottom: 12px;
+            border: 1px solid rgba(0,0,0,0.06);
+            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+        }
+        .rek-card .rek-bank {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--merah);
+            margin-bottom: 6px;
+        }
+        .rek-card .rek-num {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--text);
+            letter-spacing: 1px;
+        }
+        .rek-card .rek-name {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+        /* Note */
+        .note-box {
+            background: #FFEBEE;
+            border-radius: 14px;
+            padding: 16px 18px;
+            margin-top: 16px;
+            border-left: 4px solid var(--merah);
+        }
+        .note-box p {
+            font-size: 12px;
+            color: var(--merah-dark);
+            line-height: 1.6;
+            font-weight: 500;
+        }
+        /* CTA */
+        .cta-section {
+            margin: 0 20px 20px;
+            background: linear-gradient(135deg, var(--merah-dark), var(--merah));
+            border-radius: 24px;
+            padding: 28px 24px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%; right: -30%;
+            width: 200px; height: 200px;
+            background: rgba(255,215,0,0.1);
+            border-radius: 50%;
+        }
+        .cta-section h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            color: var(--putih);
+            margin-bottom: 6px;
+        }
+        .cta-section p {
+            font-size: 12px;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 6px;
+            line-height: 1.5;
+        }
+        .cta-section .panitia {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--emas);
+            margin-bottom: 16px;
+        }
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--emas);
+            color: var(--merah-dark);
+            font-size: 14px;
+            font-weight: 700;
+            padding: 14px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: 0 4px 20px rgba(255,215,0,0.4);
+            transition: transform 0.2s;
+        }
+        .cta-btn:hover { transform: translateY(-2px); }
+        /* Bottom Nav */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 430px;
+            background: var(--card-bg);
+            border-top: 1px solid rgba(0,0,0,0.06);
+            padding: 12px 20px;
+            padding-bottom: calc(12px + env(safe-area-inset-bottom));
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            z-index: 1000;
+        }
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 10px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .nav-item.active { color: var(--merah); }
+        .nav-item i { font-size: 20px; }
+        .nav-item.active i { color: var(--merah); }
+        .nav-spacer { height: 80px; }
+        /* Animations */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-in { animation: fadeInUp 0.6s ease forwards; opacity: 0; }
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+        /* Music Button */
+        .music-btn {
+            position: fixed;
+            top: 16px;
+            right: 16px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--merah-dark), var(--merah));
+            color: #fff;
+            border: none;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 2000;
+            box-shadow: 0 4px 16px rgba(229,57,53,0.4);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .music-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 24px rgba(229,57,53,0.5);
+        }
+        .music-btn.playing {
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 4px 16px rgba(229,57,53,0.4); }
+            50% { box-shadow: 0 4px 24px rgba(229,57,53,0.7); }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Audio Player -->
+<audio id="bgMusic" loop preload="auto">
+    <source src="audio/indonesia-raya.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Music Toggle Button -->
+<button class="music-btn" id="musicBtn" title="Play Indonesia Raya">
+    <i class="fas fa-music" id="musicIcon"></i>
+</button>
+
+<div class="app-container">
+
+    <!-- Header -->
+    <header class="site-header">
+        <div class="logo"><i class="fas fa-leaf"></i></div>
+        <div class="brand">
+            <h1>Safira Green Residence</h1>
+            <p>Hunian Asri &amp; Modern</p>
+        </div>
+    </header>
+
+    <!-- Ribbon -->
+    <div class="ribbon"></div>
+
+    <!-- Hero -->
+    <section id="beranda" class="hero">
+        <div class="hero-garuda">&#129413;</div>
+        <div class="hero-flag">
+            <div class="red"></div>
+            <div class="white"></div>
+        </div>
+        <div class="hero-label">Dirgahayu Republik Indonesia</div>
+        <h1>81</h1>
+        <h2>Tahun Kemerdekaan</h2>
+        <p class="tagline">Warga Safira Green Residence mengundang seluruh keluarga besar untuk merayakan HUT RI ke-81</p>
+        <div class="year-badge"><i class="fas fa-flag"></i> 17 Agustus 2026</div>
+    </section>
+
+    <!-- Countdown -->
+    <div class="countdown-section animate-in delay-1">
+        <div class="countdown-card">
+            <div class="cd-value" id="cd-days">--</div>
+            <div class="cd-label">Hari</div>
+        </div>
+        <div class="countdown-card">
+            <div class="cd-value" id="cd-hours">--</div>
+            <div class="cd-label">Jam</div>
+        </div>
+        <div class="countdown-card">
+            <div class="cd-value" id="cd-mins">--</div>
+            <div class="cd-label">Menit</div>
+        </div>
+        <div class="countdown-card">
+            <div class="cd-value" id="cd-secs">--</div>
+            <div class="cd-label">Detik</div>
+        </div>
+    </div>
+
+    <!-- Jadwal Acara -->
+    <section id="jadwal" class="section animate-in delay-2">
+        <h2 class="section-title"><i class="fas fa-calendar-alt"></i> Jadwal Acara</h2>
+
+        <div class="event-card">
+            <span class="event-date"><i class="fas fa-calendar-day"></i> Sabtu, 15 Agustus 2026</span>
+            <h3>Lomba 17 Agustus</h3>
+            <p>Berbagai perlombaan seru untuk anak-anak dan dewasa. Ayo ramaikan!</p>
+            <div class="event-time"><i class="fas fa-clock"></i> Jam 09.00 - Selesai</div>
+            <div class="event-time"><i class="fas fa-gift"></i> Jam 16.00 - Pembagian Hadiah</div>
+        </div>
+
+        <div class="event-card">
+            <span class="event-date"><i class="fas fa-calendar-day"></i> Senin, 17 Agustus 2026</span>
+            <h3>Malam Tirakat &amp; Makan Bersama</h3>
+            <p>Perayaan malam kemerdekaan dengan makan bersama seluruh warga Safira Green Residence.</p>
+            <div class="event-time"><i class="fas fa-clock"></i> Jam 19.30 - Selesai</div>
+        </div>
+    </section>
+
+    <!-- Daftar Lomba -->
+    <section id="lomba" class="section animate-in delay-3">
+        <h2 class="section-title"><i class="fas fa-trophy"></i> Daftar Lomba</h2>
+        <ol class="lomba-list">
+            <li><div class="lomba-num">1</div><span>Ambil Bendera</span></li>
+            <li><div class="lomba-num">2</div><span>Isi Air ke Botol dengan Spon</span></li>
+            <li><div class="lomba-num">3</div><span>Kelereng Sendok</span></li>
+            <li><div class="lomba-num">4</div><span>Makan Kerupuk</span></li>
+            <li><div class="lomba-num">5</div><span>Tiup Balon di Atas Gelas Air</span></li>
+            <li><div class="lomba-num">6</div><span>Makan Biskuit di Muka</span></li>
+            <li><div class="lomba-num">7</div><span>Estafet Air (Group)</span></li>
+            <li><div class="lomba-num">8</div><span>Masukkan Benang ke Jarum</span></li>
+            <li><div class="lomba-num">9</div><span>Injak Balon</span></li>
+            <li><div class="lomba-num">10</div><span>Suap Makanan (Group)</span></li>
+        </ol>
+    </section>
+
+    <!-- Biaya & Iuran -->
+    <section id="biaya" class="section animate-in delay-3">
+        <h2 class="section-title"><i class="fas fa-money-bill-wave"></i> Rincian Biaya</h2>
+
+        <div class="biaya-card">
+            <h3><i class="fas fa-receipt"></i> Anggaran Acara</h3>
+            <div class="biaya-item">
+                <span class="label">Biaya Lomba</span>
+                <span class="value">Rp 1.000.000</span>
+            </div>
+            <div class="biaya-item">
+                <span class="label">Malam Tirakat</span>
+                <span class="value">Rp 1.000.000</span>
+            </div>
+            <div class="biaya-item">
+                <span class="label">Iuran Per Rumah</span>
+                <span class="value">@ Rp 100.000</span>
+            </div>
+        </div>
+
+        <h2 class="section-title" style="margin-top:20px;"><i class="fas fa-university"></i> Transfer Iuran</h2>
+
+        <div class="rek-card">
+            <div class="rek-bank"><i class="fas fa-wallet"></i> DANA</div>
+            <div class="rek-num">085817039394</div>
+            <div class="rek-name">a/n AMALINA</div>
+        </div>
+
+        <div class="rek-card">
+            <div class="rek-bank"><i class="fas fa-building-columns"></i> BCA</div>
+            <div class="rek-num">2533599630</div>
+            <div class="rek-name">a/n AMALINA</div>
+        </div>
+
+        <div class="note-box">
+            <p><i class="fas fa-exclamation-circle"></i> Pembayaran iuran per rumah paling lambat <strong>5 Agustus 2026</strong> (untuk pembelian hadiah dan biaya acara). Terima kasih.</p>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <div id="kontak" class="cta-section animate-in delay-4">
+        <h3>Hubungi Panitia</h3>
+        <p>Untuk info lebih lanjut dan pendaftaran lomba</p>
+        <div class="panitia"><i class="fas fa-user-tie"></i> Ketua Panitia: Kong Mursyid</div>
+        <div class="panitia"><i class="fas fa-user-tie"></i> Wakil Panitia: Aki Sambung Roso</div>
+        <a href="https://wa.me/6281380769774" class="cta-btn">
+            <i class="fab fa-whatsapp"></i> Chat Admin Panitia
+        </a>
+    </div>
+
+    <div class="nav-spacer"></div>
+    <div class="ribbon"></div>
+
+</div>
+
+<!-- Bottom Navigation -->
+<nav class="bottom-nav">
+    <a href="#beranda" class="nav-item active" data-section="beranda">
+        <i class="fas fa-home"></i><span>Beranda</span>
+    </a>
+    <a href="#jadwal" class="nav-item" data-section="jadwal">
+        <i class="fas fa-calendar"></i><span>Jadwal</span>
+    </a>
+    <a href="#lomba" class="nav-item" data-section="lomba">
+        <i class="fas fa-trophy"></i><span>Lomba</span>
+    </a>
+    <a href="#biaya" class="nav-item" data-section="biaya">
+        <i class="fas fa-money-bill"></i><span>Biaya</span>
+    </a>
+    <a href="#kontak" class="nav-item" data-section="kontak">
+        <i class="fas fa-phone"></i><span>Kontak</span>
+    </a>
+</nav>
+
+<script>
+// Music player
+var audio = document.getElementById('bgMusic');
+var musicBtn = document.getElementById('musicBtn');
+var musicIcon = document.getElementById('musicIcon');
+var isPlaying = false;
+
+musicBtn.addEventListener('click', function() {
+    if (isPlaying) {
+        audio.pause();
+        musicIcon.className = 'fas fa-music';
+        musicBtn.classList.remove('playing');
+        musicBtn.title = 'Play Indonesia Raya';
+    } else {
+        audio.play();
+        musicIcon.className = 'fas fa-pause';
+        musicBtn.classList.add('playing');
+        musicBtn.title = 'Pause Indonesia Raya';
+    }
+    isPlaying = !isPlaying;
+});
+
+// Countdown to 17 Agustus 2026
+function updateCountdown() {
+    var target = new Date('2026-08-17T00:00:00+07:00').getTime();
+    var now = new Date().getTime();
+    var diff = target - now;
+    if (diff <= 0) {
+        document.getElementById('cd-days').textContent = '0';
+        document.getElementById('cd-hours').textContent = '0';
+        document.getElementById('cd-mins').textContent = '0';
+        document.getElementById('cd-secs').textContent = '0';
+        return;
+    }
+    document.getElementById('cd-days').textContent = Math.floor(diff / (1000*60*60*24));
+    document.getElementById('cd-hours').textContent = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+    document.getElementById('cd-mins').textContent = Math.floor((diff % (1000*60*60)) / (1000*60));
+    document.getElementById('cd-secs').textContent = Math.floor((diff % (1000*60)) / 1000);
+}
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+// Nav scroll
+document.querySelectorAll('.nav-item').forEach(function(link) {
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+        var target = document.getElementById(this.getAttribute('data-section'));
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        document.querySelectorAll('.nav-item').forEach(function(i) { i.classList.remove('active'); });
+        this.classList.add('active');
+    });
+});
+var sections = ['beranda','jadwal','lomba','biaya','kontak'];
+window.addEventListener('scroll', function() {
+    var scrollPos = window.scrollY + 120;
+    for (var i = sections.length - 1; i >= 0; i--) {
+        var el = document.getElementById(sections[i]);
+        if (el && scrollPos >= el.offsetTop) {
+            document.querySelectorAll('.nav-item').forEach(function(item) {
+                item.classList.remove('active');
+                if (item.getAttribute('data-section') === sections[i]) item.classList.add('active');
+            });
+            break;
+        }
+    }
+});
+</script>
+
+</body>
+</html>
