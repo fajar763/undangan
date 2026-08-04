@@ -471,9 +471,69 @@
             0%, 100% { box-shadow: 0 4px 16px rgba(229,57,53,0.4); }
             50% { box-shadow: 0 4px 24px rgba(229,57,53,0.7); }
         }
+        /* Intro Overlay */
+        .intro-overlay {
+            position: fixed;
+            inset: 0;
+            background: linear-gradient(160deg, var(--merah-dark), var(--merah));
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px 32px;
+        }
+        .intro-overlay .intro-flag {
+            display: flex;
+            flex-direction: column;
+            width: 70px; height: 46px;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+            margin-bottom: 24px;
+        }
+        .intro-overlay .intro-flag .red { flex:1; background: var(--merah-light); }
+        .intro-overlay .intro-flag .white { flex:1; background: #fff; }
+        .intro-overlay h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            color: var(--emas);
+            margin-bottom: 8px;
+        }
+        .intro-overlay p {
+            font-size: 13px;
+            color: rgba(255,255,255,0.85);
+            margin-bottom: 32px;
+            line-height: 1.6;
+        }
+        .intro-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--emas);
+            color: var(--merah-dark);
+            font-size: 15px;
+            font-weight: 800;
+            padding: 16px 36px;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(255,215,0,0.5);
+        }
     </style>
 </head>
 <body>
+
+<!-- Intro Overlay -->
+<div class="intro-overlay" id="introOverlay">
+    <div class="intro-flag"><div class="red"></div><div class="white"></div></div>
+    <h2>Dirgahayu RI ke-81</h2>
+    <p>Safira Green Residence<br>mengucapkan Selamat HUT RI ke-81</p>
+    <button class="intro-btn" id="introBtn">
+        <i class="fas fa-music"></i> Masuk &amp; Play Musik
+    </button>
+</div>
 
 <!-- Audio Player -->
 <audio id="bgMusic" loop preload="auto">
@@ -645,11 +705,20 @@
 </nav>
 
 <script>
-// Music player
+// Intro overlay
 var audio = document.getElementById('bgMusic');
 var musicBtn = document.getElementById('musicBtn');
 var musicIcon = document.getElementById('musicIcon');
 var isPlaying = false;
+
+document.getElementById('introBtn').addEventListener('click', function() {
+    document.getElementById('introOverlay').style.display = 'none';
+    audio.play();
+    isPlaying = true;
+    musicIcon.className = 'fas fa-pause';
+    musicBtn.classList.add('playing');
+    musicBtn.title = 'Pause Indonesia Raya';
+});
 
 musicBtn.addEventListener('click', function() {
     if (isPlaying) {
